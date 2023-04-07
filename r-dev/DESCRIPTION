@@ -1,0 +1,21 @@
+Imports:
+    Signac,
+    GenomeInfoDb,
+    GenomicRanges,
+    Rsamtools,
+    EnhancedVolcano,
+    BSgenome.Hsapiens.UCSC.hg38,
+    tidyseurat,
+    SCpubr,
+    viridis,
+    ggseqlogo,
+    ggplotify,
+    ggrepel,
+    tibble
+
+Remotes:
+    bioc::GenomeInfoDb,
+    bioc::GenomicRanges,
+    bioc::Rsamtools,
+    bioc::EnhancedVolcano,
+    bioc::BSgenome.Hsapiens.UCSC.hg38

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  devenv:
+    env_file:
+      - .env
+    container_name: ${USER_NAME}-r-dev
+    image: ${USER_NAME}-r${R_VER}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - TAG=${TAG}
+        - R_VER=${R_VER}
+        - USER_NAME=${USER_NAME}
+    volumes:
+      - "/mnt/data0/${USER_NAME}:/data0"
+      - "/mnt/data0/cache:/cache"
+      - "projects:/projects"
+      - "extensions:/root/.vscode-server/extensions"
+    tty: true
+    restart: always
+
+volumes:
+  projects:
+    external: true
+    name: ${USER_NAME}
+  extensions:
+    external: true
+    name: ${USER_NAME}-vsc-extensions
+
