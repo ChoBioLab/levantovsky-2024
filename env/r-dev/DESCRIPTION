@@ -11,11 +11,15 @@ Imports:
     ggseqlogo,
     ggplotify,
     ggrepel,
-    tibble
+    circlize,
+    ggpubr,
+    ComplexUpset,
+    ComplexHeatmap
 
 Remotes:
     bioc::GenomeInfoDb,
     bioc::GenomicRanges,
     bioc::Rsamtools,
     bioc::EnhancedVolcano,
-    bioc::BSgenome.Hsapiens.UCSC.hg38
+    bioc::BSgenome.Hsapiens.UCSC.hg38,
+    bioc::ComplexHeatmap

@@ -1,0 +1,6 @@
+[submodule "env/devenvs/wetlab/r-dev/rlev"]
+	path = env/devenvs/wetlab/r-dev/rlev
+	url = git@github.com:ChoBioLab/devenvs.git
+[submodule "env/rlev"]
+	path = env/rlev
+	url = git@github.com:ChoBioLab/devenvs.git
