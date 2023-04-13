@@ -4,3 +4,6 @@
 [submodule "env/rlev"]
 	path = env/rlev
 	url = git@github.com:ChoBioLab/devenvs.git
+[submodule "src/coreSC"]
+	path = src/coreSC
+	url = git@github.com:ChoBioLab/coreSC.git
