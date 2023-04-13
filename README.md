@@ -24,6 +24,7 @@ Package management in this project was handled entirely by some form of virtuali
 All environments outlined in this codebase were originally assembled in Unix (linux / mac os). It is generally advised that any use of these workflows be carried out in a comparable architecture.
 
 **seurat-deseq**
+
 Every element within the Seurat framework was executed inside a container. The setup for this environment can be executed with a single script as shown below.
 
 ```sh
@@ -38,7 +39,9 @@ sudo ./rebuild                          # execute the container build - admin pr
 # how to connect to a container https://code.visualstudio.com/docs/devcontainers/attach-container
 ```
 
-**conda** (scenic, scVelo, tobias, cellphoneDB)
+**conda** 
+
+(scenic, scVelo, tobias, cellphoneDB)
 
 ```sh
 conda create --name <env> --file <this file>
