@@ -1,0 +1,39 @@
+---
+title: "cellphonedb_inputs"
+author: "Jiayu Zhang"
+date: "2022-08-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load Dependencies
+```{r}
+library(Seurat)
+```
+
+```{r}
+obj = readRDS("YOUR_PATH_TO_CORESC_OUTPUT_RDS_FILE/YOUR_DATAOBJECT_NAME.rds")
+class(obj) # should be a Seurat Object
+
+# extract the count matrix from the seurat object
+count_mt = as.matrix(obj@assays$RNA@counts)
+count_mt = cbind(rownames(count_mt), count_mt)
+colnames(count_mt)[1] = "Gene"
+
+# build the meta data 
+meta = obj@active.ident
+meta = data.frame(Cell = names(meta), cell_type = meta)
+# clean for special characters
+# remove + and spaces; replace , with _
+meta$cell_type = gsub("+", "", meta$cell_type)
+meta$cell_type = gsub(", ", "_", meta$cell_type)
+meta$cell_type = gsub(" ", "", meta$cell_type)
+
+# output the count matrix and meta table
+write.table(count_mt, file = "YOUR_PATH_TO_OUTPUT/count_matrix.txt", row.names = F, col.names = T, sep = "\t", quote = F)
+write.table(meta, file = "YOUR_PATH_TO_OUTPUT/meta_table.txt", row.names = F, col.names = T, sep = "\t", quote = F)
+```
+
