@@ -1,0 +1,138 @@
+---
+title: "scenic_inputs"
+author: "Jiayu Zhang"
+date: "2023-01-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load Dependencies
+```{r}
+library(Seurat)
+library(SeuratObject)
+#library(SeuratData)
+```
+
+```{r}
+obj = readRDS("../../data/2023-02-13_PerianalCD_Annotated_UPDATE.RDS")
+class(obj) # should be a Seurat Object
+
+# extract the count matrix from the seurat object
+count_mt = obj@assays$RNA@counts
+meta = obj@meta.data
+meta$Label
+
+meta_tocsv = data.frame("cell_id" = rownames(meta), 
+                        "sample_id" = meta$PubID_Obj,
+                        "cell_type" = meta$ClusterAnnotation,
+                        "cohort" = meta$Race,
+                        "no.of.genes" = meta$nFeature_RNA,
+                        "no.of.reads" = meta$nCount_RNA,
+                        "patient_id" = meta$PubID,
+                        "age" = meta$AgeAtEnrollment,
+                        "sex" = meta$Sex,
+                        "tnf_treatment" = meta$TNFAtProcedure,
+                        "fistula_current" = meta$FistulaCurrent,
+                        "inflammation" = meta$Inflammation,
+                        "site" = meta$Region)
+
+# output the count matrix and meta table
+
+
+DropletUtils::write10xCounts(path = "./resources/Perianal_n14/", count_mt, barcodes = colnames(count_mt), 
+                            gene.id = rownames(count_mt), gene.symbol = rownames(count_mt), 
+                            gene.type = "Gene Expression", type = "sparse", version = "3")
+write.table(meta_tocsv, file = "./resources/meta_n14.txt", quote = F, sep = "\t", col.names = T, row.names = F)
+```
+
+```{r}
+meta = obj@meta.data
+multi_idx = which(meta$MultiomePair == "Yes")
+multi_set = obj[, multi_idx]
+# extract the count matrix from the seurat object
+multi_count_mt <- multi_set@assays$RNA@counts
+
+# extract the meta table from seurat object
+multi_meta <- multi_set@meta.data
+
+
+multi_meta_tocsv = data.frame("cell_id" = rownames(multi_meta), 
+                        "sample_id" = multi_meta$PubID_Obj,
+                        "cell_type" = multi_meta$ClusterAnnotation,
+                        "cohort" = multi_meta$Race,
+                        "no.of.genes" = multi_meta$nFeature_RNA,
+                        "no.of.reads" = multi_meta$nCount_RNA,
+                        "patient_id" = multi_meta$PubID,
+                        "age" = multi_meta$AgeAtEnrollment,
+                        "sex" = multi_meta$Sex,
+                        "tnf_treatment" = multi_meta$TNFAtProcedure,
+                        "fistula_current" = multi_meta$FistulaCurrent,
+                        "inflammation" = multi_meta$Inflammation,
+                        "site" = multi_meta$Region)
+
+# write output
+DropletUtils::write10xCounts(path = "./resources/Perianal_multi/", multi_count_mt, barcodes = colnames(multi_count_mt), 
+                            gene.id = rownames(multi_count_mt), gene.symbol = rownames(multi_count_mt), 
+                            gene.type = "Gene Expression", type = "sparse", version = "3")
+write.table(multi_meta_tocsv, file = "./resources/meta_multi.txt", quote = F, sep = "\t", col.names = T, row.names = F)
+```
+
+
+```{r}
+fis_idx = which(meta$Region == "Fistula")
+tis_idx = which(meta$Region != "Fistula")
+fis_set = obj[, fis_idx]
+tis_set = obj[, tis_idx]
+
+# extract the count matrix from the seurat object
+fis_count_mt = fis_set@assays$RNA@counts
+tis_count_mt = tis_set@assays$RNA@counts
+
+fis_meta = fis_set@meta.data
+tis_meta = tis_set@meta.data
+
+fis_meta_tocsv = data.frame("cell_id" = rownames(fis_meta), 
+                        "sample_id" = fis_meta$PubID_Obj,
+                        "cell_type" = fis_meta$ClusterAnnotation,
+                        "cohort" = fis_meta$Race,
+                        "no.of.genes" = fis_meta$nFeature_RNA,
+                        "no.of.reads" = fis_meta$nCount_RNA,
+                        "patient_id" = fis_meta$PubID,
+                        "age" = fis_meta$AgeAtEnrollment,
+                        "sex" = fis_meta$Sex,
+                        "tnf_treatment" = fis_meta$TNFAtProcedure,
+                        "fistula_current" = fis_meta$FistulaCurrent,
+                        "inflammation" = fis_meta$Inflammation,
+                        "site" = fis_meta$Region)
+
+
+
+tis_meta_tocsv = data.frame("cell_id" = rownames(tis_meta), 
+                        "sample_id" = tis_meta$PubID_Obj,
+                        "cell_type" = tis_meta$ClusterAnnotation,
+                        "cohort" = tis_meta$Race,
+                        "no.of.genes" = tis_meta$nFeature_RNA,
+                        "no.of.reads" = tis_meta$nCount_RNA,
+                        "patient_id" = tis_meta$PubID,
+                        "age" = tis_meta$AgeAtEnrollment,
+                        "sex" = tis_meta$Sex,
+                        "tnf_treatment" = tis_meta$TNFAtProcedure,
+                        "fistula_current" = tis_meta$FistulaCurrent,
+                        "inflammation" = tis_meta$Inflammation,
+                        "site" = tis_meta$Region)
+
+# output the count matrix and meta table
+
+
+DropletUtils::write10xCounts(path = "./resources/Perianal_fistula/", fis_count_mt, barcodes = colnames(fis_count_mt), 
+                            gene.id = rownames(fis_count_mt), gene.symbol = rownames(fis_count_mt), 
+                            gene.type = "Gene Expression", type = "sparse", version = "3")
+DropletUtils::write10xCounts(path = "./resources/Perianal_tissue/", tis_count_mt, barcodes = colnames(tis_count_mt), 
+                            gene.id = rownames(tis_count_mt), gene.symbol = rownames(tis_count_mt), 
+                            gene.type = "Gene Expression", type = "sparse", version = "3")
+write.table(fis_meta_tocsv, file = "./resources/meta_fistula.txt", quote = F, sep = "\t", col.names = T, row.names = F)
+write.table(tis_meta_tocsv, file = "./resources/meta_tissue.txt", quote = F, sep = "\t", col.names = T, row.names = F)
+```
