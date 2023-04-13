@@ -14,10 +14,7 @@ services:
         - R_VER=${R_VER}
         - USER_NAME=${USER_NAME}
     volumes:
-      - "/mnt/data0/${USER_NAME}:/data0"
-      - "/mnt/data0/cache:/cache"
-      - "projects:/projects"
-      - "extensions:/root/.vscode-server/extensions"
+      - "${DATA_DOWNLOAD}:/data0/RDS_Files/Med_Submission"
     tty: true
     restart: always
 
