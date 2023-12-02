@@ -1,9 +1,0 @@
-#!/bin/bash
-
-source .env
-
-docker container stop ${USER_NAME}-r-dev
-docker container rm ${USER_NAME}-r-dev
-docker compose build
-docker compose up -d
-
