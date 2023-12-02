@@ -1,6 +1,12 @@
 # levantovsky-2024
 Published code and computational methods for Levantovsky et. al. 2024
 
+This codebase include submodules, so the `--recursive` flag is required.
+
+```sh
+git clone --recursive https://github.com/ChoBioLab/levantovsky-2024.git
+```
+
 ## Tools
 - [CellPhoneDB](https://github.com/Teichlab/cellphonedb) - cell-ligand analysis
 - [coreSC](https://github.com/ChoBioLab/coreSC) - scRNAseq and scATAC-multiome preprocessing (Seurat & Signac wrapper)
