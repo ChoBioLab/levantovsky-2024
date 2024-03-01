@@ -3,6 +3,8 @@ Published code and computational methods for Levantovsky et. al. 2024
 
 This codebase include submodules, so the `--recursive` flag is required.
 
+[![DOI](https://zenodo.org/badge/624900220.svg)](https://zenodo.org/doi/10.5281/zenodo.10729881)
+
 ```sh
 git clone --recursive https://github.com/ChoBioLab/levantovsky-2024.git
 ```
