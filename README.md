@@ -1,7 +1,19 @@
-# levantovsky-2024
+# Multimodal single-cell analyses reveal mechanisms of perianal fistula in diverse patients with Crohn’s disease
 Published code and computational methods for Levantovsky et. al. 2024
 
-[![DOI](https://zenodo.org/badge/624900220.svg)](https://zenodo.org/doi/10.5281/zenodo.10729881)
+Supplementary processed data products from these methods are available on a linked [Open Science Framework (OSF)](https://osf.io/s4mqw/) project by request.
+
+**DOIs**
+
+- published manuscript - https://doi.org/10.1016/j.medj.2024.03.021
+- processed data products - https://doi.org/10.17605/OSF.IO/S4MQW
+- this code repository - [![DOI](https://zenodo.org/badge/624900220.svg)](https://zenodo.org/doi/10.5281/zenodo.10729881)
+
+**Citation**
+
+**Levantovsky, R.M., Tastad, C., Zhang, J., Gettler, K., Sabic, K., Werner, R., Chasteau, C., Korie, U., Paguay, D., Bao, M., et al. (2024). Multimodal single-cell analyses reveal mechanisms of perianal fistula in diverse patients with Crohn’s disease. Med 5, 886-908.e11. https://doi.org/10.1016/j.medj.2024.03.021.**
+
+## Tools
 
 This codebase include submodules, so the `--recursive` flag is required.
 
@@ -9,7 +21,6 @@ This codebase include submodules, so the `--recursive` flag is required.
 git clone --recursive https://github.com/ChoBioLab/levantovsky-2024.git
 ```
 
-## Tools
 - [CellPhoneDB](https://github.com/Teichlab/cellphonedb) - cell-ligand analysis
 - [coreSC](https://github.com/ChoBioLab/coreSC) - scRNAseq and scATAC-multiome preprocessing (Seurat & Signac wrapper)
 - [DESeq2](https://github.com/mikelove/DESeq2) - DEG analysis
